@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<style>
+  .div-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .block1 {
+    flex: 1 300px;
+    height: 300px;
+    background-color: red;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+<body>
+  <div class="div-container">
+    <div class="block1">67</div>
+    <div class="block1">0</div>
+    <div class="block1">1</div>
+    <div class="block1">2</div>
+    <div class="block1">3</div>
+    <div class="block1">4</div>
+    <div class="block1">5</div>
+    <div class="block1">6</div>
+    <div class="block1">7</div>
+    <div class="block1">8</div>
+    <div class="block1">9</div>
+    <div class="block1">10</div>
+    <div class="block1">11</div>
+    <div class="block1">12</div>
+    <div class="block1">13</div>
+    <div class="block1">14</div>
+    <div class="block1">15</div>
+    <div class="block1">16</div>
+    <div class="block1">17</div>
+    <div class="block1">18</div>
+    <div class="block1">19</div>
+  </div>
+</body>
+
+<script>
+  const viewPortDetails = (elem) => {
+    const viewPort = elem.getBoundingClientRect();
+    return (
+      viewPort.top >= 0 &&
+      viewPort.left >= 0 &&
+      viewPort.right <=
+        (window.innerWidth || document.documentElement.clientWidth) &&
+      viewPort.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight)
+    );
+  };
+  const debounce = (func, delay) => {
+    let inbounce;
+    return function () {
+      if (inbounce) {
+        clearTimeout(inbounce);
+      }
+      inbounce = setTimeout(() => func(), delay);
+    };
+  };
+
+  const getBlocks = () => {
+    blocks.forEach((block) => {
+      if (viewPortDetails(block)) {
+        console.log(block.innerHTML);
+      }
+    });
+    console.log(" ");
+  };
+  const blocks = document.querySelectorAll(".block1");
+  window.addEventListener("scroll", debounce(getBlocks, 1000), false);
+</script>
