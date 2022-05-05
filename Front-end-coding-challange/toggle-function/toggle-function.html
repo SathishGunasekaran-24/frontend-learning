@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script>
+  const toggleFunction = (...list) => {
+    let current = -1;
+    let length = list.length;
+    return () => {
+      current = (current + 1) % length;
+      return list[current];
+    };
+  };
+  const hello = toggleFunction("hi","hello","Hey")
+  console.log(hello());
+  console.log(hello());
+  console.log(hello());
+</script>
+<body>
+  Hi I am Toggle function
+</body>
